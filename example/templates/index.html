@@ -467,11 +467,15 @@
       if (response.ok) {
         const data = await response.json()
         // alert(`${data.id}`);
-        console.log(data);
+         console.log(data.id);
         //document.getElementById("description").value = data.id;
-        
+
         // Call the function with the provided data
-        fillForm(data.id);
+        document.getElementById('id').value = data.id.id;
+      document.getElementById('fname').value = data.id.firstname;
+      document.getElementById('lname').value = data.id.lastname;
+      document.getElementById('local').value = data.id.local;
+      document.getElementById('description').value = data.id.description;
 
         transcriptionBox.textContent = "";
         transcriptionInput.value = "";
