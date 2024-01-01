@@ -3,8 +3,7 @@
 
 <head>
   <meta charset="UTF-8" />
-  
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
 
   <style>
@@ -207,17 +206,6 @@
       transition: all .3s;
     }
 
-    .strbtn:hover {
-      background-color: rgb(0, 0, 77);
-      transition: all .3s;
-    }
-
-    #startButton:hover {
-      background-color: rgb(0, 0, 77);
-      transition: all .3s;
-    }
-
-
     .cc button:active {
       background-color: rgb(0, 0, 255);
       border: blue 1px solid;
@@ -228,8 +216,19 @@
       font-weight: 600;
     }
 
+    .pulse :hover {
+      background-color: rgb(0, 0, 77);
+      transition: all .3s;
+    }
+
+    .recactive {
+      background-color: rgb(255, 0, 0) !important;
+    }
+
 
   </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 
 
   <link rel="preconnect" href="https://fonts.gstatic.com" />
@@ -240,7 +239,7 @@
     />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap"
     rel="stylesheet" />
-  <title>AiCrafters</title>
+  <title>🗣️-To-💬</title>
 
   <link href="https://39.surge.sh/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
   <link rel="stylesheet" href="https://39.surge.sh/assets/css/fontawesome.css" />
@@ -274,12 +273,12 @@
                 readonly placeholder="Clique pour commencer l'enregistrement..."></textarea>
             </div>
             <div class="col-lg-12">
-              <button id="startButton" class="strbtn">
+              <button id="startButton" >
                 Start Recording Voice</button> <br />
               <br />
             </div>
             <div class="col-lg-12">
-              <button id="stopButton" disabled style="visibility: hidden;">
+              <button id="stopButton" style="visibility: hidden;">
                 Stop Recording Voice</button>
             </div>
           </div>
@@ -399,13 +398,9 @@
 
       // Start speech recognition
       recognition.start();
-      startButton.disabled = true;
-      stopButton.disabled = false;
-      saveButton.disabled = true;
       startButton.textContent = "Recording...";
-      startButton.style.backgroundColor = "red";
+      startButton.classList.add("recactive");
       stopButton.style.visibility = "visible"
-      
       transcriptionBox.textContent = "";
     });
     languageSelect.addEventListener("change", () => {
@@ -415,16 +410,14 @@
     stopButton.addEventListener("click", async () => {
       
       stopButton.style.visibility = "hidden";
-      startButton.disabled = false;
-      stopButton.disabled = true;
-      saveButton.disabled = false;
+
       
       await new Promise((resolve) => setTimeout(resolve, 500));
       // Stop audio recording
       audioRecorder.stop();
       audioStream.getTracks().forEach((track) => track.stop());
       startButton.textContent = "Start Recording Voice";
-      startButton.style.backgroundColor = "blue";
+      startButton.classList.remove("recactive");
       
       // Stop speech recognition
       recognition.stop();
