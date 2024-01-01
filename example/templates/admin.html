@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Nouvelle Prompt</title>
+  <title>Prompt-Admin 🤖</title>
 
   <style>
     body {
@@ -91,7 +91,7 @@
 
     form#c button {
       display: inline-block;
-      background-color: #0bd73e;
+      background-color: #001aff;
       font-size: 15px;
       font-weight: 400;
       color: #fff;
@@ -105,7 +105,7 @@
     }
 
     form#c button:hover {
-      background-color: #0dfd5d;
+      background-color: #0026ff;
     }
 
 
@@ -129,28 +129,13 @@
       border-radius: 20px;
     }
 
-    .cc {
-      margin-left: 30px;
-      position: relative;
-      background-color: #fff;
-      padding: 60px 30px;
-      border-radius: 20px;
-    }
-
-
-    .cc {
-      margin-left: 30px;
-      position: relative;
-      background-color: #fff;
-      padding: 60px 30px;
-      border-radius: 20px;
-    }
+   
 
     .cc input {
       width: 100%;
       height: 46px;
       border-radius: 33px;
-      background-color: #d1f3ff;
+      background-color: #e9ecef;
       border: none;
       outline: none;
       font-size: 15px;
@@ -169,10 +154,10 @@
       min-width: 100%;
       max-width: 100%;
       max-height: 180px;
-      min-height: 140px;
+      min-height: 180px;
       height: 140px;
       border-radius: 20px;
-      background-color: #d1f3ff;
+      background-color: #e9ecef;
       border: none;
       outline: none;
       font-size: 15px;
@@ -188,13 +173,19 @@
 
 
     .benv {
+      display: inline-block;
       background-color: blue;
-      color: white;
-      margin: 10vh;
-      border-radius: 10px;
-      border: none;
+      font-size: 15px;
       font-weight: 400;
+      color: #fff;
+      text-transform: capitalize;
+      padding: 12px 25px;
+      border-radius: 23px;
+      letter-spacing: 0.25px;
+      border: none;
+      outline: none;
       transition: all .3s;
+      width: 100px;
     }
 
     .benv:hover {
@@ -217,7 +208,7 @@
   <link
         rel="shortcut icon"
         type="x-icon"
-        href="https://39.surge.sh/assets/images/logo1.png"
+        href="logo.png"
       /> 
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap"
     rel="stylesheet" />
@@ -228,14 +219,14 @@
 </head>
 
 <body>
-  <div style="padding:10vh ; ">
-    <h1 style="padding-bottom: 5vh;">Enregistrer un nouveau Prompt</h1>
+  <div style="padding:10vh ; " class="cc">
+    <h1 style="padding-bottom: 5vh;">Change The Prompt</h1>
     <form id="textForm" style="display: flex;">
       <div>
-        <label for="textData">Ancien Prompt:</label>
-        <textarea id="hasuraData" rows="4" cols="50" disabled style="resize: none;"></textarea><br /><br />
-        <label for="textData">Entrer Prompt:</label>
-        <textarea id="textData" name="textData" rows="4" cols="50" required></textarea>
+        <label for="textData">The Old Prompt:</label>
+        <textarea id="hasuraData" rows="8" cols="60" disabled style="resize: none;"></textarea><br /><br />
+        <label for="textData">The New Prompt:</label>
+        <textarea id="textData" name="textData" rows="5" cols="50" required></textarea>
       </div>
       <br /><br />
       <div style="padding-left: 10vh;">
@@ -245,7 +236,7 @@
         <!-- Input for an unlimited number -->
         <label for="unlimitedNumber">Tokens</label>
         <input type="number" id="token" name="token" /><br /><br />
-        <button class="benv" type="submit">Envoyer</button>
+        <button class="benv" type="submit">Send</button>
       </div>
       <!-- Green indicator for success -->
       <div id="successIndicator" style="color: green; display: none">
@@ -258,7 +249,7 @@
         <div class="row">
           <div class="col-lg-12 wow fadeIn" data-wow-duration="1s" data-wow-delay="0.25s">
             <div style="display: flex;">
-              <p>AI Crafters 2023 - </p> <a style="color: blue;" href="{% url 'save_audio2' %}">[prompt test]</a>
+              <p ><a class="lll"  href="https://mounseflit.surge.sh" style=" text-decoration: none; color: rgb(0, 0, 0); font-weight: 600;" >@Mounseflit</a> &nbsp;2024 &nbsp; <a style="color: blue;" href="{% url 'save_audio2' %}">[Main page]</a>
             </div>
           </div>
         </div>
