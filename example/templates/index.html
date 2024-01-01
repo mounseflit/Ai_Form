@@ -219,14 +219,16 @@
 
 
   <link rel="preconnect" href="https://fonts.gstatic.com" />
-  <link
+
+   <link
       rel="shortcut icon"
       type="x-icon"
       href="https://39.surge.sh/assets/images/logo1.png"
     /> 
+  
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap"
     rel="stylesheet" />
-  <title>Lydec x AiCrafters</title>
+  <title>VoiceForms</title>
 
   <link href="https://39.surge.sh/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
   <link rel="stylesheet" href="https://39.surge.sh/assets/css/fontawesome.css" />
@@ -273,8 +275,22 @@
             {% csrf_token %}
             <div class="row">
               <div class="col-lg-12">
-                <textarea name="text" type="text" class="form-control" id="transcriptionResult2" rows="40" cols="40"
-                  readonly placeholder="Transcript..." style="height: 300px;max-height: none;"></textarea>
+                                
+                <textarea name="id" type="text" class="form-control" id="id" 
+                  readonly placeholder="ID..." style="height: 60px;max-height: 60px; min-height: 60px;"></textarea>
+
+                <textarea name="fname" type="text" class="form-control" id="fname" 
+                  readonly placeholder="First Name..." style="height: 60px;max-height: 60px; min-height: 60px;"></textarea>
+              
+                <textarea name="lname" type="text" class="form-control" id="lname" 
+                  readonly placeholder="Last Name..." style="height: 60px;max-height: 60px; min-height: 60px;"></textarea>
+                
+                <textarea name="local" type="text" class="form-control" id="local" 
+                  readonly placeholder="Localisation..." style="height: 60px;max-height: 60px; min-height: 60px;"></textarea>
+
+                <textarea name="description" type="text" class="form-control" id="description" rows="40" cols="40"
+                  readonly placeholder="Description..." style="height: 60px;max-height: none;"></textarea>
+              
               </div>
 
               <div class="col-lg-6">
@@ -285,7 +301,7 @@
               <div class="col-lg-12">
                 <fieldset>
                   <button type="submit" id="saveButton" disabled>
-                    Améliorer avec l'IA
+                    Fill Using Ai
                   </button>
                 </fieldset>
               </div>
@@ -416,7 +432,8 @@
         const data = await response.json()
         // alert(`${data.id}`);
         console.log(data)
-        document.getElementById("transcriptionResult2").value = data.id;
+
+        document.getElementById("description").value = data.id;
 
         transcriptionBox.textContent = "";
         transcriptionInput.value = "";
