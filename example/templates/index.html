@@ -439,6 +439,15 @@
       transcriptionInput.value = transcript;
     };
 
+     function fillForm(data) {
+      document.getElementById('id').value = data.id;
+      document.getElementById('fname').value = data.firstname;
+      document.getElementById('lname').value = data.lastname;
+      document.getElementById('local').value = data.local;
+      document.getElementById('description').value = data.description;
+    }
+
+
     transcriptionForm.addEventListener("submit", async (event) => {
       event.preventDefault();
       const formData = new FormData(transcriptionForm);
@@ -458,9 +467,11 @@
       if (response.ok) {
         const data = await response.json()
         // alert(`${data.id}`);
-        console.log(data)
-
-        document.getElementById("description").value = data.id;
+        console.log(data);
+        //document.getElementById("description").value = data.id;
+        
+        // Call the function with the provided data
+        fillForm(data.id);
 
         transcriptionBox.textContent = "";
         transcriptionInput.value = "";
