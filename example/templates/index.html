@@ -397,10 +397,14 @@
 
       // Start speech recognition
       recognition.start();
+      startButton.disabled = true;
+      stopButton.disabled = false;
+      saveButton.disabled = true;
       startButton.textContent = "Recording...";
       startButton.classList.add("recactive");
       stopButton.style.visibility = "visible"
       transcriptionBox.textContent = "";
+      
     });
     languageSelect.addEventListener("change", () => {
       recognition.lang = languageSelect.value; // Update the recognition language
@@ -417,6 +421,9 @@
       audioStream.getTracks().forEach((track) => track.stop());
       startButton.textContent = "Start Recording Voice";
       startButton.classList.remove("recactive");
+      startButton.disabled = false;
+      stopButton.disabled = true;
+      saveButton.disabled = false;
       
       // Stop speech recognition
       recognition.stop();
