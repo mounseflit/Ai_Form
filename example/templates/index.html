@@ -203,32 +203,45 @@
 
     .cc button:hover {
       background-color: rgb(0, 0, 77);
-      border: #000000 2px solid;
+      transition: all .3s;
+    }
+
+    .strbtn:hover {
+      background-color: rgb(0, 0, 77);
+      transition: all .3s;
+    }
+
+    #startButton:hover {
+      background-color: rgb(0, 0, 77);
       transition: all .3s;
     }
 
 
     .cc button:active {
       background-color: rgb(0, 0, 255);
-      border: #0b00a1 1px solid;
+      border: blue 1px solid;
       transition: all .3s;
     }
+
+    .lll :hover {
+      font-weight: 600;
+    }
+
+
   </style>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 
 
   <link rel="preconnect" href="https://fonts.gstatic.com" />
-
-   <link
+  <link
       rel="shortcut icon"
       type="x-icon"
       href="https://39.surge.sh/assets/images/logo1.png"
-    /> 
-  
+    />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap"
     rel="stylesheet" />
-  <title>VoiceForms</title>
+  <title>AiCrafters</title>
 
   <link href="https://39.surge.sh/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
   <link rel="stylesheet" href="https://39.surge.sh/assets/css/fontawesome.css" />
@@ -238,17 +251,17 @@
 
 <body>
 
-  <div id="contact" class="contact-us section" style="padding: 0px; margin-top: -30px;">
-    <div class="container">
+  <div id="contact" class="contact-us section" style="padding: 0px; margin-top: -50px; ">
+    <div class="cc">
       <div class="row">
         <div class="col-lg-6 align-self-center wow fadeInLeft" data-wow-duration="0.5s" data-wow-delay="0.25s">
           <div class="row">
             <div class="col-lg-6">
-               <h1 style="width: 500px;">Speech To Form 🗣️💬</h1>
+              <h1 style="width: 500px;">Speech To Form 🗣️💬</h1>
               <br />
-              <div style="display: inline-block;">
-                <h5 style="width: 200px; display: inline-block;">Choose Your Language 🌐 :</h5>
-                <select id="languageSelect" required style="width: 200px; display: inline-block;">
+              <div style="display: flex; flex: auto; ">
+                <h6 style="width: 250px; white-space: nowrap; margin-right: 30px;  padding-top: 3px;">Choose Your Language 🌐 : </h6>
+                <select id="languageSelect" required style="height: 30px; width: 250px; ">
                   <option value="fr-FR">French (France)</option>
                   <option value="ar-AR">Arabic (Arab)</option>
                   <option value="en-US">English (US)</option>
@@ -262,18 +275,18 @@
                 readonly placeholder="Clique pour commencer l'enregistrement..."></textarea>
             </div>
             <div class="col-lg-12">
-              <button id="startButton">
-                Commencer l'enregistrement</button> <br />
+              <button id="startButton" class="strbtn">
+                Start Recording Voice</button> <br />
               <br />
             </div>
             <div class="col-lg-12">
-              <button id="stopButton" disabled>
-                Arreter l'enregistrement</button>
+              <button id="stopButton" disabled style="visibility: hidden;">
+                Stop Recording Voice</button>
             </div>
           </div>
         </div>
 
-        <div class="col-lg-6 wow fadeInRight" data-wow-duration="0.5s" data-wow-delay="0.25s">
+        <div class="col-lg-6 wow fadeInRight" data-wow-duration="0.5s" data-wow-delay="0.25s" style="margin-left: -50px;">
           <form id="transcriptionForm" class="cc" method="post">
             {% csrf_token %}
             <div class="row">
@@ -292,7 +305,7 @@
                   readonly placeholder="Localisation..." style="height: 60px;max-height: 60px; min-height: 60px;"></textarea>
 
                 <textarea name="description" type="text" class="form-control" id="description" rows="40" cols="40"
-                  readonly placeholder="Description..." style="height: 60px;max-height: none;"></textarea>
+                  readonly placeholder="Description..." style="height: 100px;max-height: none;"></textarea>
               
               </div>
 
@@ -320,8 +333,8 @@
       <div class="row">
         <div class="col-lg-12 wow fadeIn" data-wow-duration="1s" data-wow-delay="0.25s">
           <div style="display: flex;">
-            <p><a href="https://mounseflit.surge.sh">@Mounseflit</a> 2024 - </p> <a style="color: blue;" href="{% url 'admin_lydec' %}">[prompt admin]</a>
-          </div>
+            <p ><a class="lll"  href="https://mounseflit.surge.sh" style=" text-decoration: none; color: rgb(0, 0, 0); font-weight: 600;" >@Mounseflit</a> 2024 - </p> <a style="color: blue;" href="{% url 'admin_lydec' %}">[prompt admin]</a>
+         </div>
         </div>
       </div>
     </div>
@@ -390,22 +403,35 @@
       startButton.disabled = true;
       stopButton.disabled = false;
       saveButton.disabled = true;
+      startButton.textContent = "Recording...";
+      startButton.style.backgroundColor = "red";
+      stopButton.style.visibility = "visible"
+      
       transcriptionBox.textContent = "";
     });
     languageSelect.addEventListener("change", () => {
       recognition.lang = languageSelect.value; // Update the recognition language
     });
 
-    stopButton.addEventListener("click", () => {
-      // Stop audio recording
-      audioRecorder.stop();
-      audioStream.getTracks().forEach((track) => track.stop());
-
-      // Stop speech recognition
-      recognition.stop();
+    stopButton.addEventListener("click", async () => {
+      
+      stopButton.style.visibility = "hidden";
       startButton.disabled = false;
       stopButton.disabled = true;
       saveButton.disabled = false;
+      
+      await new Promise((resolve) => setTimeout(resolve, 500));
+      // Stop audio recording
+      audioRecorder.stop();
+      audioStream.getTracks().forEach((track) => track.stop());
+      startButton.textContent = "Start Recording Voice";
+      startButton.style.backgroundColor = "blue";
+      
+      // Stop speech recognition
+      recognition.stop();
+      
+      
+      
     });
 
     recognition.onresult = (event) => {
