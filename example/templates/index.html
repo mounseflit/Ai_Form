@@ -440,11 +440,17 @@
     };
 
      function fillForm(data) {
-      document.getElementById('id').value = data.id;
-      document.getElementById('fname').value = data.firstname;
-      document.getElementById('lname').value = data.lastname;
-      document.getElementById('local').value = data.local;
-      document.getElementById('description').value = data.description;
+      
+      // Parse the 'id' string as JSON
+      const idData = JSON.parse(data.id);
+      
+      // Call the function with the provided data
+      document.getElementById('id').value = idData.id;
+      document.getElementById('fname').value = idData.firstname;
+      document.getElementById('lname').value = idData.lastname;
+      document.getElementById('local').value = idData.local;
+      document.getElementById('description').value = idData.description;
+       
     }
 
 
