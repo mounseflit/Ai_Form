@@ -91,7 +91,7 @@
 
     form#c button {
       display: inline-block;
-      background-color: #001aff;
+      background-color: #F2173B;
       font-size: 15px;
       font-weight: 400;
       color: #fff;
@@ -105,7 +105,7 @@
     }
 
     form#c button:hover {
-      background-color: #0026ff;
+      background-color: #F2173B;
     }
 
 
@@ -174,7 +174,7 @@
 
     .benv {
       display: inline-block;
-      background-color: blue;
+      background-color: #F2173B;
       font-size: 15px;
       font-weight: 400;
       color: #fff;
@@ -182,21 +182,19 @@
       padding: 12px 25px;
       border-radius: 23px;
       letter-spacing: 0.25px;
-      border: none;
       outline: none;
+      border: none;
       transition: all .3s;
       width: 100px;
     }
 
     .benv:hover {
-      background-color: rgb(0, 0, 77);
-      border: #000000 2px solid;
+      background-color: #ce1332;
       transition: all .3s;
     }
 
     .benv:active {
-      background-color: rgb(0, 0, 255);
-      border: #0b00a1 1px solid;
+      background-color: #F2173B;
       transition: all .3s;
     }
   </style>
@@ -250,7 +248,10 @@
         <div class="row">
           <div class="col-lg-12 wow fadeIn" data-wow-duration="1s" data-wow-delay="0.25s">
             <div style="display: flex;">
-              <p ><a class="lll"  href="https://mounseflit.surge.sh" style=" text-decoration: none; color: rgb(0, 0, 0); font-weight: 600;" >@Mounseflit</a> &nbsp;2024 &nbsp; <a style="color: blue;" href="{% url 'save_audio2' %}">[Main page]</a>
+              <p ><a class="lll"  href="https://mounseflit.surge.sh" style=" text-decoration: none; color: rgb(0, 0, 0); font-weight: 600;" >@Mounseflit</a> &nbsp;Copyright &copy;
+                <script>
+                document.write(new Date().getFullYear());
+                </script> &nbsp; <a style="color: #F2173B;" href="{% url 'save_audio2' %}">[Main page]</a>
             </div>
           </div>
         </div>
