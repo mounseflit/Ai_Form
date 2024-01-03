@@ -1,11 +1,11 @@
-[![Deployed with Vercel](https://vercel.com/button)](https://descriptionvocal.vercel.app/)
+[![Deployed with Vercel](https://vercel.com/button)](https://form--ai.vercel.app/)
 
 # AI Voice Auto Fill for Forms via MounsefLit
 
 
 ## Demo
 
-https://descriptionvocal.vercel.app/
+https://form--ai.vercel.app/
 
 
 This example uses the Web Server Gateway Interface (WSGI) with Django to enable handling requests on Vercel with Serverless Functions.
@@ -24,4 +24,4 @@ Deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_mediu
 
 
 
-[![Deployed with Vercel](https://vercel.com/button)](https://descriptionvocal.vercel.app/)
+[![Deployed with Vercel](https://vercel.com/button)](https://form--ai.vercel.app/)
