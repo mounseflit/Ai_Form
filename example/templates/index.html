@@ -239,6 +239,49 @@
       font-size: 15 !important;
     }
 
+
+
+     .loader {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.9); /* Semi-transparent white background */
+  z-index: 1000;
+}
+
+.loader-content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.loader-spinner {
+  border: 8px solid #3498db; /* Blue border */
+  border-top: 8px solid #ffffff; /* White border on top to create the loader effect */
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  animation: spin 1s linear infinite; /* Spinner rotation animation */
+}
+
+.loader-text {
+  margin-top: 10px;
+  color: #333; /* Text color */
+  font-size: 16px;
+  font-weight: bold;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+
   </style>
   
 
@@ -261,6 +304,13 @@
 </head>
 
 <body>
+
+  <div id="loader" class="loader">
+    <div class="loader-content">
+      <div class="loader-spinner"></div>
+      <div class="loader-text">Saving...</div>
+    </div>
+  </div>
 
   <div id="contact" class="contact-us section" style="padding: 0px; margin-top: -50px; ">
     <div class="cc">
@@ -430,6 +480,16 @@
       recognition.lang = languageSelect.value; // Update the recognition language
     });
 
+
+    saveButton.addEventListener("click", async () => {
+
+      document.getElementById("loader").style.display = "block";
+      fakeButton.style.display = "block";
+      saveButton.style.display = "none";
+    
+    });
+
+
     stopButton.addEventListener("click", async () => {
       
       stopButton.style.visibility = "hidden";
@@ -493,10 +553,13 @@
       });
 
       if (response.ok) {
+        // Parse the response as JSON
         const data = await response.json()
         // alert(`${data.id}`);
          console.log(data);
         //document.getElementById("description").value = data.id;
+        document.getElementById("loader").style.display = "none";
+
 
         // Call the function with the provided data
         fillForm(data);
@@ -504,6 +567,7 @@
         transcriptionBox.textContent = "";
         transcriptionInput.value = "";
       } else {
+        document.getElementById("loader").style.display = "none";
         alert("Error saving transcription");
       }
     });
