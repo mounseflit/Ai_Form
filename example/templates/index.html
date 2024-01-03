@@ -91,7 +91,6 @@
 
     form#c button {
       display: inline-block;
-      background-color: #0bd73e;
       font-size: 15px;
       font-weight: 400;
       color: #fff;
@@ -104,9 +103,7 @@
       transition: all .3s;
     }
 
-    form#c button:hover {
-      background-color: #0dfd5d;
-    }
+   
 
 
 
@@ -188,7 +185,7 @@
 
     .cc button {
       display: inline-block;
-      background-color: blue;
+      background-color: #F2173B;
       font-size: 15px;
       font-weight: 400;
       color: #fff;
@@ -202,13 +199,13 @@
     }
 
     .cc button:hover {
-      background-color: rgb(0, 0, 77);
+      background-color: #ce1332;
       transition: all .3s;
     }
 
     .cc button:active {
-      background-color: rgb(0, 0, 255);
-      border: blue 1px solid;
+      background-color: #F2173B;
+      border: #F2173B 1px solid;
       transition: all .3s;
     }
 
@@ -217,16 +214,15 @@
     }
 
     .pulse :hover {
-      background-color: rgb(0, 0, 77);
+      background-color: #ce1332;
       transition: all .3s;
     }
 
     .recactive {
-      background-color: rgb(255, 0, 0) !important;
+      background-color: rgba(0, 0, 0, 0) !important;
+      color: #ff0000 !important;
     }
 
-   
-    
     .fakebtn {
       background-color: rgb(124, 124, 124) !important;
       border: rgba(124, 124, 124, 0) 1px solid!important;
@@ -241,46 +237,52 @@
 
 
 
-     .loader {
-  display: none;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(255, 255, 255, 0.9); /* Semi-transparent white background */
-  z-index: 1000;
-}
+    .loader {
+      display: none;
+      position: fixed;
+      text-align: center;
+      align-items: center;
+      justify-content: center;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(255, 255, 255, 0.9); /* Semi-transparent white background */
+      z-index: 1000;
+    }
 
-.loader-content {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  text-align: center;
-}
+    .loader-content {
+      text-align: center;
+      align-items: center;
+      justify-content: center;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
 
-.loader-spinner {
-  border: 8px solid #3498db; /* Blue border */
-  border-top: 8px solid #ffffff; /* White border on top to create the loader effect */
-  border-radius: 50%;
-  width: 50px;
-  height: 50px;
-  animation: spin 1s linear infinite; /* Spinner rotation animation */
-}
+    .loader-spinner {
+      border: 8px solid #F2173B; /* Blue border */
+      border-top: 8px solid #ffffff; /* White border on top to create the loader effect */
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      animation: spin 1s linear infinite; /* Spinner rotation animation */
+    }
 
-.loader-text {
-  margin-top: 10px;
-  color: #333; /* Text color */
-  font-size: 16px;
-  font-weight: bold;
-}
+    .loader-text {
+      margin-left: -24px;
+      text-align: center;
+      margin-top: 10px;
+      color: #333; /* Text color */
+      font-size: 16px;
+      font-weight: bold;
+    }
 
-@keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
-}
-
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
 
   </style>
   
@@ -308,9 +310,11 @@
   <div id="loader" class="loader">
     <div class="loader-content">
       <div class="loader-spinner"></div>
-      <div class="loader-text">Saving...</div>
+      <div class="loader-text">Ai Magic ✨...</div>
+      
     </div>
   </div>
+
 
   <div id="contact" class="contact-us section" style="padding: 0px; margin-top: -50px; ">
     <div class="cc">
@@ -337,12 +341,12 @@
             </div>
             <div class="col-lg-12">
               <button id="startButton" >
-                Start Recording Voice</button> <br />
+                Start Recording Voice 🎙️</button> <br />
               <br />
             </div>
             <div class="col-lg-12">
               <button id="stopButton" style="visibility: hidden;">
-                Stop Recording Voice</button>
+                Stop Recording Voice ✋</button>
             </div>
           </div>
         </div>
@@ -378,10 +382,10 @@
               <div class="col-lg-12">
                 <fieldset>
                   <button type="submit" id="saveButton" disabled   style="display: none;">
-                    Ai Magic ✨
+                    Auto-Fill Using Ai 🧠
                   </button>
                   <button type="submit" id="fakeButton" class="fakebtn" disabled>
-                    Ai Magic ✨
+                    Auto-Fill Using Ai 🧠
                   </button>
                 </fieldset>
               </div>
@@ -468,8 +472,12 @@
       startButton.disabled = true;
       stopButton.disabled = false;
       saveButton.disabled = true;
-      startButton.textContent = "Recording...";
+      startButton.style.visibility = "hidden";
+      await new Promise((resolve) => setTimeout(resolve, 300));
       startButton.classList.add("recactive");
+      startButton.textContent = " 🛑 REC";
+      await new Promise((resolve) => setTimeout(resolve, 200));
+      startButton.style.visibility = "visible"
       stopButton.style.visibility = "visible"
       transcriptionBox.textContent = "";
       fakeButton.style.display = "block";
@@ -499,7 +507,7 @@
       // Stop audio recording
       audioRecorder.stop();
       audioStream.getTracks().forEach((track) => track.stop());
-      startButton.textContent = "Start Recording Voice";
+      startButton.textContent = "Start Recording Voice 🎙️";
       startButton.classList.remove("recactive");
       fakeButton.style.display = "none";
       saveButton.style.display = "block";
